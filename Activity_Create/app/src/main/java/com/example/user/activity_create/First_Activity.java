@@ -1,0 +1,35 @@
+package com.example.user.activity_create;
+
+import android.app.AppComponentFactory;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+public class First_Activity extends AppCompatActivity{
+    @Override
+    protected void onCreate(Bundle savedInstatnceState){
+        super.onCreate(savedInstatnceState);
+        setContentView(R.layout.first_layout);
+
+        //Toast
+        Button button_1 = (Button) findViewById(R.id.button_1);
+        button_1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(First_Activity.this, "You clicked Button_1",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button button_2 = (Button) findViewById(R.id.button_2);
+        button_2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(First_Activity.this, "You clicked Button_2",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}
