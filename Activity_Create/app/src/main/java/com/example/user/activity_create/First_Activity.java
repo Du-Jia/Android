@@ -45,10 +45,10 @@ public class First_Activity extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.add_item:
-                Toast.makeText(this, "You clicked Add", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "You clicked Add Button", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.remove_item:
-                Toast.makeText(this, "You clicked Remove", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "You clicked Remove Button", Toast.LENGTH_SHORT).show();
                 break;
             default:
 

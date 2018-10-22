@@ -4,16 +4,22 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical">
 
-<Button
-    android:layout_height="wrap_content"
-    android:id="@+id/button_1"
-    android:layout_width="match_parent"
-    android:text="Button_1"
-    />
+    <Button
+        android:layout_height="wrap_content"
+        android:id="@+id/button_1"
+        android:layout_width="match_parent"
+        android:text="Button_1"
+        />
 
     <Button
         android:id="@+id/button_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Button_2"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 </LinearLayout>
