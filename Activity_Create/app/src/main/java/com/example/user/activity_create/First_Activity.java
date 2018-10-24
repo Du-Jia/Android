@@ -1,6 +1,7 @@
 package com.example.user.activity_create;
 
 import android.app.AppComponentFactory;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -22,6 +23,13 @@ public class First_Activity extends AppCompatActivity{
             public void onClick(View view) {
                 Toast.makeText(First_Activity.this, "You clicked Button_1",
                         Toast.LENGTH_SHORT).show();
+                //Open SecondActivity explicitly
+//                Intent intent = new Intent(First_Activity.this, SecondActivity.class);
+//                startActivity(intent);
+                //Open SecondActivity implicitly
+                Intent intent = new Intent("com.example.activitytest.ACTION_START");
+                intent.addCategory("com.example.activitytest.MY_CATEGORY");
+                startActivity(intent);
             }
         });
 
@@ -31,6 +39,7 @@ public class First_Activity extends AppCompatActivity{
             public void onClick(View view) {
                 Toast.makeText(First_Activity.this, "You clicked Button_2",
                         Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }
