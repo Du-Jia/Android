@@ -5,14 +5,8 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/Button_3"
+        android:id="@+id/New"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button 3"/>
-
-    <Button
-        android:id="@+id/Button_4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Return"/>
+        android:text="New"/>
 </LinearLayout>

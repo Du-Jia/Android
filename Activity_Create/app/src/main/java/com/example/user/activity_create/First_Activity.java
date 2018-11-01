@@ -3,7 +3,9 @@ package com.example.user.activity_create;
 import android.app.AppComponentFactory;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +31,9 @@ public class First_Activity extends AppCompatActivity{
                 //Open SecondActivity implicitly
                 Intent intent = new Intent("com.example.activitytest.ACTION_START");
                 intent.addCategory("com.example.activitytest.MY_CATEGORY");
-                startActivity(intent);
+                //tranform data by intent
+                intent.putExtra("data", "transfrom data by intent");
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -64,5 +68,19 @@ public class First_Activity extends AppCompatActivity{
 
         }
         return true;
+    }
+
+    //override onActivityResult method to get the data being transformed by intent from secondActivity
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode){
+            case 1:
+                if(resultCode == RESULT_OK){
+                    String returnData = data.getStringExtra("data2first");
+                    Log.d("FirstActivity", returnData);
+                }
+                break;
+            default: break;
+        }
     }
 }
