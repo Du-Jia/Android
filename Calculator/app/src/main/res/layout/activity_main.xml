@@ -11,16 +11,6 @@
         layout="@layout/keyboard"
         android:layout_gravity="center_horizontal|bottom"></include>
 
-
-    <include
-        android:id="@+id/board2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/keyboard2"
-        android:visibility="gone"
-        android:layout_gravity="center_horizontal|bottom"></include>
-
-
     <LinearLayout
         android:id="@+id/display"
         android:layout_width="match_parent"
@@ -35,7 +25,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginRight="@dimen/change_right_margin"
-            android:background="@drawable/change_btn"
             android:text="⇋"
             android:layout_weight="1"
             ></Button>

@@ -15,74 +15,60 @@
                 <Button
                     android:id="@+id/empty"
                     android:text="C"
-                    android:textColor="@color/keyImp"
-                    android:background="@drawable/keyboard"/>
+                    android:textColor="@color/keyImp"/>
                 <Button
                     android:id="@+id/delete"
-                    android:text="←"
-                    android:background="@drawable/keyboard"/>
+                    android:text="←"/>
                 <Button
                     android:id="@+id/divide"
-                    android:text="/"
-                    android:background="@drawable/keyboard" />
+                    android:text="/"/>
             </TableRow>
             <TableRow>
                 <Button
                     android:id="@+id/seven"
-                    android:text="7"
-                    android:background="@drawable/keyboard" />
+                    android:text="7" />
                 <Button
                     android:id="@+id/eight"
-                    android:text="8"
-                    android:background="@drawable/keyboard" />
+                    android:text="8"/>
                 <Button
                     android:id="@+id/nine"
-                    android:text="9"
-                    android:background="@drawable/keyboard"/>
+                    android:text="9"/>
             </TableRow>
             <TableRow>
                 <Button
                     android:id="@+id/four"
-                    android:background="@drawable/keyboard"
                     android:text="4" />
                 <Button
                     android:id="@+id/five"
-                    android:text="5"
-                    android:background="@drawable/keyboard" />
+                    android:text="5" />
                 <Button
                     android:id="@+id/six"
-                    android:text="6"
-                    android:background="@drawable/keyboard" />
+                    android:text="6" />
             </TableRow>
             <TableRow>
                 <Button
                     android:id="@+id/one"
                     android:layout_weight="1"
-                    android:text="1"
-                    android:background="@drawable/keyboard" />
+                    android:text="1" />
                 <Button
                     android:id="@+id/two"
                     android:layout_weight="1"
-                    android:text="2"
-                    android:background="@drawable/keyboard"/>
+                    android:text="2"/>
                 <Button
                     android:id="@+id/three"
                     android:layout_weight="1"
-                    android:text="3"
-                    android:background="@drawable/keyboard" />
+                    android:text="3" />
             </TableRow>
             <TableRow>
                 <Button
                     android:id="@+id/zero"
                     android:layout_weight="2"
                     android:text="0"
-                    android:layout_span="2"
-                    android:background="@drawable/keyboard"/>
+                    android:layout_span="2"/>
                 <Button
                     android:id="@+id/dot"
                     android:layout_weight="1"
-                    android:text="."
-                    android:background="@drawable/keyboard"/>
+                    android:text="."/>
             </TableRow>
         </TableLayout>
 
@@ -90,39 +76,29 @@
             <TableRow>
                 <Button
                     android:id="@+id/multiple"
-                    android:text="*"
-                    android:background="@drawable/keyboard" />
+                    android:text="*"/>
             </TableRow>
 
 
             <TableRow>
                 <Button
                     android:id="@+id/minus"
-                    android:text="-"
-                    android:background="@drawable/keyboard" />
+                    android:text="-" />
             </TableRow>
 
             <TableRow>
                 <Button
                     android:id="@+id/plus"
-                    android:text="+"
-                    android:background="@drawable/keyboard"/>
+                    android:text="+"/>
             </TableRow>
 
             <TableRow>
                 <Button
                     android:id="@+id/equal"
-                    android:background="@drawable/keyboard_equal"
                     android:text="="/>
             </TableRow>
         </TableLayout>
 
     </TableRow>
-
-
-
-
-
-
 
 </TableLayout>
