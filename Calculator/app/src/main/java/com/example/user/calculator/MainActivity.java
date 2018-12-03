@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
         return dimen;
     }
 
-    //不算状态栏，标题栏的高度
+   //不算状态栏，标题栏的高+度
     private Dimension getAreaThree(Activity activity){
         Dimension dimen = new Dimension();
         // 用户绘制区域
