@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="60dip"
+        android:layout_height="50dip"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignStart="@+id/completeButton"
+        android:padding="5dp"
+        android:text="返回"/>
+
+    <EditText
+        android:id="@+id/titleText"
+        android:layout_width="265dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/backButton"
+        android:paddingTop="5dip"
+        android:text="未命名" />
+
+    <Button
+        android:id="@+id/completeButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="right"
+        android:padding="5dp"
+        android:text="完成" />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleText"
+        android:layout_alignParentBottom="true"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:padding="5dp"
+        android:text="输入内容"/>
+
+
+</RelativeLayout>

@@ -10,7 +10,7 @@
     <item
         android:id="@+id/back"
         android:orderInCategory="100"
-        android:title="Back"
+        android:title="new_notes"
         app:showAsAction="never"
         />
 
