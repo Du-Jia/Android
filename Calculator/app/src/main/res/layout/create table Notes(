@@ -1,0 +1,6 @@
+create table Notes(
+	id integer primary key ,
+	folder varchar(40) ,
+	title varchar(40) unique,
+	createDate date,
+	content text)

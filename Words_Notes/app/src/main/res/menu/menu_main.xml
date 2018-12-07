@@ -4,14 +4,7 @@
     tools:context="com.example.user.words_notes.MainActivity">
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/back"
-        android:orderInCategory="100"
-        android:title="new_notes"
-        app:showAsAction="never"
-        />
+        android:orderInCategory="101"
+        android:title="@string/action_settings" />
 
 </menu>
