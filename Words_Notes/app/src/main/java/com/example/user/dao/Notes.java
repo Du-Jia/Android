@@ -1,4 +1,4 @@
-package com.example.user.words_notes;
+package com.example.user.dao;
 
 import android.provider.BaseColumns;
 
