@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.user.LayoutClass.Note;
 import com.example.user.LayoutClass.NoteAdapter;
+import com.example.user.dao.NotesCRUD;
 import com.example.user.dao.NotesDBHelper;
 
 import java.util.ArrayList;
@@ -35,16 +36,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //Link database
         notesdb = new NotesDBHelper(this);
+        NotesCRUD noteutill = new NotesCRUD(notesdb);
+
         dbutil = notesdb.getReadableDatabase();
 
         //find all button or ui
         ListView list = (ListView)findViewById(R.id.listView);
         Button newNotes = (Button)findViewById(R.id.new_note);
-        Button folder = (Button)findViewById(R.id.folder);
+        final Button folder = (Button)findViewById(R.id.folder);
         TextView folder_name = (TextView)findViewById(R.id.folder_name);
 
 
-        noteList = getNotesList();
+//        noteList = getNotesList();
+        noteList = noteutill.getAll();
         NoteAdapter adapter = new NoteAdapter(MainActivity.this, R.layout.note_item, noteList);
 
         list.setAdapter(adapter);
@@ -52,7 +56,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Note note = noteList.get(i);
-                EditActivity.actionStart(MainActivity.this, note.getTitle(), note.getContent());
+                TextView folder_name = (TextView)findViewById(R.id.folder_name);
+                EditActivity.actionStart(MainActivity.this, folder_name.getText().toString(),
+                        note.getTitle(), note.getContent());
             }
         });
         newNotes.setOnClickListener(this);
@@ -86,15 +92,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String sql = "select * from Notes";
         Cursor cursor = dbutil.rawQuery(sql, null);
         Log.d("SQL", sql);
-//        ArrayList<Map<String, String>> adpter = new ArrayList<Map<String, String>>();
         while(cursor.moveToNext()){
             String title = cursor.getString(cursor.getColumnIndex("title"));
             String content = cursor.getString(cursor.getColumnIndex("context"));
-            noteList.add(new Note(title, content));
-//            Map<String, String> tmp = new HashMap<String, String>();
-//            tmp.put("title", title);
-//            tmp.put("content", content);
-//            adpter.add(tmp);
+            String date = cursor.getString(cursor.getColumnIndex("createDate"));
+            noteList.add(new Note(title, content, date));
         }
         cursor.close();
         return noteList;
@@ -115,6 +117,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 TextView folder_name = (TextView)findViewById(R.id.folder_name);
                 EditActivity.actionStart(MainActivity.this, " ");
 //                Intent intent = new Intent(MainActivity.this, EditActivity.class);
+//                intent.putExtra("tiltle", "未命名");
+//                intent.putExtra("folder_name", folder_name.getText().toString());
+//                intent.putExtra("content", "");
 //                startActivity(intent);
             }break;
             case R.id.folder:{

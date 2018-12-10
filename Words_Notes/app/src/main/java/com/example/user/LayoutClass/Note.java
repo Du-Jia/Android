@@ -10,6 +10,12 @@ public class Note {
         this.content = content;
     }
 
+    public Note(String title, String content, String createDate){
+        this.title = title;
+        this.content = content;
+        this.date = createDate;
+    }
+
     public String getTitle(){
         return title;
     }
