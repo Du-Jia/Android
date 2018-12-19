@@ -193,6 +193,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ReflushItemList(noteList);
             }
         });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        builder.create();
+        builder.show();
         return false;
     }
 }
