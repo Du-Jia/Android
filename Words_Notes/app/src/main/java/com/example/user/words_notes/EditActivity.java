@@ -108,11 +108,20 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
                 finish();
             }break;
             case R.id.completeButton:{
-                Log.d("Button", "click on compelete");
-//                insertAll(dbutil, titleText.getText().toString(),
-//                        contentText.getText().toString(), folderName);
-                notesUtil.insert(folderName, titleText.getText().toString(),contentText.getText().toString() );
-                Log.d("SQL", "Insert Successfully!");
+                if(contentString.equals("") || contentString == null){
+                    //If content is empty, insert new data to database when complete button is clicked
+                    Log.d("Button", "click on compelete");
+                    //                insertAll(dbutil, titleText.getText().toString(),contentText.getText().toString(), folderName);
+                    notesUtil.insert(folderName, titleText.getText().toString(),contentText.getText().toString() );
+                    Log.d("SQL", "Insert Successfully!");
+                }else{
+                    //If content is not empty, update the data, change the date in data with current date
+                    Log.d("BUTTON", "Click on compelete");
+                    notesUtil.update(folderName, titleText.getText().toString(),contentText.getText().toString() );
+                    Log.d("SQL", "Update Successfully!");
+                    Intent intent = new Intent();
+                    finish();
+                }
             }break;
             default:break;
         }

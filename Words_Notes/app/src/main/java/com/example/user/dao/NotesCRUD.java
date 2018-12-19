@@ -28,31 +28,33 @@ public class NotesCRUD {
         else{
             db = notesdb.getWritableDatabase();
             String date = getCurrentDate();
-            String sql = "UPDATE "
-                    + Notes.Note.TABLE_NAME + " SET "
-                    + Notes.Note.COLUMN_NAME_CONTEXT + " = "
-                    + content
-                    + " " + Notes.Note.COLUMN_NAME_CREATEDATE + " = "
-                    + date
-                    + " WHERE " + Notes.Note.COLUMN_NAME_FOLDER + " = "
-                    + folder + " AND "
-                    + Notes.Note.COUUMN_NAME_TITLE + " = "
-                    + title ;
+            String sql = "UPDATE " + Notes.Note.TABLE_NAME
+                    + " SET " + Notes.Note.COLUMN_NAME_CONTEXT + "='" + content + "', "
+                    + Notes.Note.COLUMN_NAME_CREATEDATE + "='" + date
+                    + "' WHERE " +
+                    Notes.Note.COLUMN_NAME_FOLDER + "='" + folder
+                    + "' AND "
+                    + Notes.Note.COUUMN_NAME_TITLE + "='" + title + "'";
             db.execSQL(sql);
+            Log.d("SQL", sql);
             status = true;
         }
         return status;
     }
 
-    public boolean delete(){
+    public boolean delete(String folder, String title){
         boolean status = false;
+        String sql = "DELETE from " + Notes.Note.TABLE_NAME + " WHERE "
+                + Notes.Note.COLUMN_NAME_FOLDER + "='" + folder + "' AND "
+                + Notes.Note.COUUMN_NAME_TITLE + "='" + title + "'";
+        db.execSQL(sql);
         return status;
     }
 
     /*
     TODO:
     1. implement query method by sql
-    2. ordey by date
+    2. order by date
     3. use 'like'
      */
     public List<Note> query(String folder, String title, String date){
@@ -67,6 +69,24 @@ public class NotesCRUD {
         return noteList;
     }
 
+    public List<Note> queryByContent( String con){
+        List<Note> noteList = new ArrayList<>();
+        String sql = "SELECT * FROM Notes WHERE " +
+                Notes.Note.COLUMN_NAME_CONTEXT + " LIKE '%"
+                + con + "%'";
+        db = notesdb.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        Log.d("SQL", sql);
+        while(cursor.moveToNext()){
+            String title = cursor.getString(cursor.getColumnIndex("title"));
+            String content = cursor.getString(cursor.getColumnIndex("context"));
+            String date = cursor.getString(cursor.getColumnIndex("createDate"));
+            noteList.add(new Note(title, content, date));
+        }
+        cursor.close();
+        return noteList;
+    }
+
     public List<Note> queryByTitle(String title){
         List<Note> noteList = null;
 
@@ -76,7 +96,7 @@ public class NotesCRUD {
     public List<Note> getAll(){
         List<Note> noteList = new ArrayList<>();
         db = notesdb.getReadableDatabase();
-        String sql = "select * from Notes";
+        String sql = "select * from Notes" ;
         Cursor cursor = db.rawQuery(sql, null);
         Log.d("SQL", sql);
         while(cursor.moveToNext()){
@@ -101,21 +121,34 @@ public class NotesCRUD {
             db = notesdb.getWritableDatabase();
             String link = "','";
             String sql = "INSERT INTO " + Notes.Note.TABLE_NAME + " VALUES ('"
-                    + getId(title) + link
+                    + getId(folder,title) + link
                     + folder + link
                     + title + link
                     + date + link
-                    + context + ",')";
+                    + context + "')";
             db.execSQL(sql);
+            Log.d("SQL", sql);
             status = true;
         }
         return status;
     }
 
+    //v1 id
     private String getId(String title){
         String id = "";
         for(int i = 0; i < title.length(); i++){
             id += (int)title.charAt(i);
+        }
+        return id;
+    }
+
+    private String getId(String folder, String title){
+        String id = "";
+        for(int i = 0; i < title.length(); i++){
+            id += (int)title.charAt(i);
+        }
+        for(int i = 0; i < folder.length(); i++){
+            id += (int)folder.charAt(i);
         }
         return id;
     }
@@ -125,6 +158,9 @@ public class NotesCRUD {
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("YY-MM-DD");
         formatDate = sdf.format(d);
+        Log.d("Date", formatDate);
+        formatDate = "2018-12-14";
         return formatDate;
     }
+
 }

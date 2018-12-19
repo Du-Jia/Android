@@ -15,11 +15,13 @@ public class NotesDBHelper extends SQLiteOpenHelper {
     //Create a table
     private static final String SQL_CREATE_TABLE = "create table "
             + Notes.Note.TABLE_NAME + "(" +
-            Notes.Note.COLUMN_NAME_ID + " varchar(20) primary key ," +
-            Notes.Note.COLUMN_NAME_FOLDER + " varchar(40) ," +
-            Notes.Note.COUUMN_NAME_TITLE + " varchar(40)," +
+            Notes.Note.COLUMN_NAME_ID + " varchar(20) not null unique," +
+            Notes.Note.COLUMN_NAME_FOLDER + " varchar(40) default '备忘录' ," +
+            Notes.Note.COUUMN_NAME_TITLE + " varchar(40) unique not null," +
             Notes.Note.COLUMN_NAME_CREATEDATE + " date not null," +
-            Notes.Note.COLUMN_NAME_CONTEXT + " text not null)";
+            Notes.Note.COLUMN_NAME_CONTEXT + " text not null," +
+            " primary key (" + Notes.Note.COLUMN_NAME_ID + "," +
+            Notes.Note.COLUMN_NAME_FOLDER +"))";
 
     //Version of database
     private static final int DATABASE_VERSION = 1;
@@ -39,9 +41,10 @@ public class NotesDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(SQL_CREATE_TABLE);
         Log.d("SQL", SQL_CREATE_TABLE);
+
         for(int i = 0; i < 10; i++){
             int id = i;
-            String sql = "INSERT INTO Notes VALUES( " + id + ", 'folder', 'test','2018-12-09', 'test content')";
+            String sql = "INSERT INTO Notes VALUES( " + id + ", '备忘录', 'Test"+ i +"','2018-12-09', 'test content')";
             sqLiteDatabase.execSQL(sql);
             Log.d("SQL", sql);
         }
