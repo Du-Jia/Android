@@ -61,6 +61,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         NoteAdapter adapter = new NoteAdapter(MainActivity.this, R.layout.note_item, noteList);
 
         list.setAdapter(adapter);
+
+        /*
+        UPDATE: Click item to edit
+         */
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -68,8 +72,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 TextView folder_name = (TextView)findViewById(R.id.folder_name);
                 EditActivity.actionStart(MainActivity.this, folder_name.getText().toString(),
                         note.getTitle(), note.getContent());
+                note = noteList.get(i);
+                ReflushItemList(noteList);
             }
         });
+        list.setOnItemLongClickListener(this);
 
         //Search content listener
         SearchView searchView= (SearchView) findViewById(R.id.searchView);
@@ -168,14 +175,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void RefreshNoteList(ArrayList<Map<String , String>> datalist, ListView listView){
-        int size = datalist.size();
-        if(size > 0){
-            datalist.removeAll(datalist);
-
-        }
-    }
-
     @Override
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
         final int ITEM = i;
@@ -190,13 +189,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 noteutill.delete(folder, title);
+                noteList = getNotesList();
                 ReflushItemList(noteList);
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
             }
         });
         builder.create();
