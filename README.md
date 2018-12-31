@@ -1,5 +1,5 @@
 # Android
-## The repository is created for Android's experiment
+## The repository is created for Android's experiments
 - There are four experiments in the class.
 - The path of these is as follow:
 	- [ ] Experiment 1, Android Calculator: **Calculator**
